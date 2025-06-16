@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ginger Hotel Booking</title>
+    <title>Hotel Booking</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -110,9 +110,8 @@
 
     <!-- Special Code Dropdown Menu -->
     <div class="special-dropdown-menu" id="specialDropdownMenu" style="display: none;">
-        <div class="dropdown-item active" data-value="none">
+        <div class="dropdown-item active" style="display :inline-block" data-value="none">
             <span>None</span>
-            <i class="fas fa-check"></i>
         </div>
         <div class="dropdown-item" data-value="corporate">
             <span>Corporate Access Code</span>
@@ -124,6 +123,194 @@
             <span>Business Connect Code</span>
         </div>
     </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <div class="row">
+                    <!-- Left Column - Logo and Subscription -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="footer-logo">
+                            <h2 class="ihcl-logo">IHCL</h2>
+                        </div>
+                        
+                        <div class="subscription-section">
+                            <h5 class="subscription-title">Subscribe For Latest Updates</h5>
+                            <div class="subscription-form">
+                                <input type="email" class="form-control subscription-input" placeholder="Enter Your Email Address" id="subscriptionEmail">
+                                <button class="btn subscription-btn" onclick="subscribeNewsletter()">Subscribe</button>
+                            </div>
+                        </div>
+
+                        <div class="contact-section">
+                            <h6 class="contact-title">Call/Email Us</h6>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <strong>1860-266-3333</strong>
+                                    <span>reservations@gingerhotels.com</span>
+                                </div>
+                            </div>
+                            
+                            <div class="customer-support">
+                                <h6 class="support-title">Customer Support</h6>
+                                <span class="support-email">feedback@gingerhotels.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Columns - Quick Links -->
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="quick-links-section">
+                            <h5 class="quick-links-title">Quick Links</h5>
+                            <div class="row">
+                                <div class="col-md-3 col-6">
+                                    <ul class="footer-links">
+                                        <li><a href="#">Hotels</a></li>
+                                        <li><a href="#">Offers</a></li>
+                                        <li><a href="#">Neupass</a></li>
+                                        <li><a href="#">Business Connect</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Sitemap</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <ul class="footer-links">
+                                        <li><a href="#">About Ginger</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">Partner with us</a></li>
+                                        <li><a href="#">Manage Your Bookings</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <ul class="footer-links">
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">FAQs</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Accessibility</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Connect with Us -->
+                    <div class="col-lg-2 col-md-12 mb-4">
+                        <div class="social-section">
+                            <h5 class="social-title">Connect with Us:</h5>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destinations Section -->
+            <div class="destinations-section">
+                <div class="destinations-header" onclick="toggleDestinations()">
+                    <span>Destinations</span>
+                    <i class="fas fa-plus destinations-toggle" id="destinationsToggle"></i>
+                </div>
+                <div class="destinations-content" id="destinationsContent" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-2 col-6">
+                            <ul class="destination-links">
+                                <li><a href="#">Mumbai</a></li>
+                                <li><a href="#">Delhi</a></li>
+                                <li><a href="#">Bangalore</a></li>
+                                <li><a href="#">Chennai</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <ul class="destination-links">
+                                <li><a href="#">Pune</a></li>
+                                <li><a href="#">Hyderabad</a></li>
+                                <li><a href="#">Kolkata</a></li>
+                                <li><a href="#">Ahmedabad</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <ul class="destination-links">
+                                <li><a href="#">Goa</a></li>
+                                <li><a href="#">Jaipur</a></li>
+                                <li><a href="#">Udaipur</a></li>
+                                <li><a href="#">Agra</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <ul class="destination-links">
+                                <li><a href="#">Shimla</a></li>
+                                <li><a href="#">Manali</a></li>
+                                <li><a href="#">Rishikesh</a></li>
+                                <li><a href="#">Haridwar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Brands Section -->
+            <div class="brands-section">
+                <h5 class="brands-title">Our Brands:</h5>
+                <div class="brands-logos">
+                    <div class="brand-logo">TAJ</div>
+                    <div class="brand-logo">CLARIDGES</div>
+                    <div class="brand-logo">SeleQtions</div>
+                    <div class="brand-logo">GATEWAY</div>
+                    <div class="brand-logo">VIVANTA</div>
+                    <div class="brand-logo ginger-brand">GINGER</div>
+                    <div class="brand-logo">TREE OF LIFE</div>
+                    <div class="brand-logo">amã</div>
+                    <div class="brand-logo">Qmin</div>
+                    <div class="brand-logo">TAJ SATS</div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright">© 2025 The Indian Hotels Company Limited. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-bottom-links">
+                            <a href="#">Corporate</a>
+                            <a href="#">Pressroom</a>
+                            <a href="#">Work With Us</a>
+                            <a href="#">Terms Of Service</a>
+                            <a href="#">Accessibility</a>
+                            <a href="#">Investor Relations</a>
+                            <a href="#">Partners</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Cookies Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

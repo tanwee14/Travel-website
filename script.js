@@ -97,7 +97,12 @@ class GingerBooking {
     document.querySelectorAll(".dropdown-item").forEach((item) => {
       item.classList.remove("active")
     })
+    
+    
+
     document.querySelector(`[data-value="${value}"]`).classList.add("active")
+    
+
 
     // Update display text
     const text =
@@ -296,3 +301,80 @@ class GingerBooking {
 document.addEventListener("DOMContentLoaded", () => {
   window.booking = new GingerBooking()
 })
+
+
+// Footer functionality
+
+// Newsletter subscription
+function subscribeNewsletter() {
+  const email = document.getElementById("subscriptionEmail").value
+
+  if (!email) {
+    alert("Please enter your email address")
+    return
+  }
+
+  if (!isValidEmail(email)) {
+    alert("Please enter a valid email address")
+    return
+  }
+
+  // Simulate subscription process
+  alert("Thank you for subscribing! You will receive our latest updates.")
+  document.getElementById("subscriptionEmail").value = ""
+}
+
+// Email validation
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+// Toggle destinations section
+function toggleDestinations() {
+  const content = document.getElementById("destinationsContent")
+  const toggle = document.getElementById("destinationsToggle")
+
+  if (content.style.display === "none") {
+    content.style.display = "block"
+    toggle.classList.add("rotated")
+    toggle.classList.remove("fa-plus")
+    toggle.classList.add("fa-minus")
+  } else {
+    content.style.display = "none"
+    toggle.classList.remove("rotated")
+    toggle.classList.remove("fa-minus")
+    toggle.classList.add("fa-plus")
+  }
+}
+
+// Back to top functionality
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  })
+}
+
+// Show/hide back to top button based on scroll position
+window.addEventListener("scroll", () => {
+  const backToTopBtn = document.getElementById("backToTop")
+  if (window.pageYOffset > 300) {
+    backToTopBtn.classList.add("show")
+  } else {
+    backToTopBtn.classList.remove("show")
+  }
+})
+
+// Add enter key support for newsletter subscription
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionInput = document.getElementById("subscriptionEmail")
+  if (subscriptionInput) {
+    subscriptionInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        subscribeNewsletter()
+      }
+    })
+  }
+})
+
