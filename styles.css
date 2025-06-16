@@ -1,0 +1,490 @@
+/* Custom CSS for Ginger Hotel Booking Navbar */
+
+/* Global Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Ginger Logo Styles */
+.ginger-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ginger-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6b35;
+  letter-spacing: 2px;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  color: #666;
+  margin-top: -2px;
+}
+
+/* Booking Controls Container */
+.booking-controls {
+  gap: 0;
+}
+
+/* Search Input Styles */
+.search-input-container {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 44px;
+  min-width: 250px;
+}
+
+.search-icon {
+  color: #666;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.clear-icon {
+  color: #999;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Date Selector Styles */
+.date-selector {
+  border: 1px solid #ddd;
+  border-left: none;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 44px;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.date-icon {
+  color: #666;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.date-text {
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Guest Selector Styles */
+.guest-selector {
+  border: 1px solid #ddd;
+  border-left: none;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 44px;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.guest-icon {
+  color: #666;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.guest-text {
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Special Code Dropdown Styles */
+.special-code-dropdown {
+  border: 1px solid #ddd;
+  border-left: none;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 44px;
+  cursor: pointer;
+  min-width: 130px;
+  position: relative;
+}
+
+.special-code-text {
+  font-size: 14px;
+  color: #333;
+  margin-right: 8px;
+}
+
+.dropdown-arrow {
+  color: #666;
+  font-size: 12px;
+}
+
+/* Search Button Styles */
+.search-btn {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 0 4px 4px 0;
+  height: 44px;
+  min-width: 80px;
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #e55a2b, #e8841a);
+  color: white;
+}
+
+/* Login Link Styles */
+.login-link {
+  margin-left: 24px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  color: #ff6b35;
+}
+
+/* Date Picker Modal Styles */
+.date-picker-modal {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 2px solid #ff6b35;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 20px;
+  min-width: 600px;
+}
+
+.calendar-container {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.calendar-month {
+  flex: 1;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.month-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.month-nav-btn {
+  background: none;
+  border: none;
+  color: #ff6b35;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-nav-btn:hover {
+  background: #f0f0f0;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  padding: 8px 4px;
+  font-weight: 500;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 8px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+  position: relative;
+  min-height: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day:hover {
+  background: #f0f0f0;
+}
+
+.calendar-day.selected {
+  background: #ff6b35;
+  color: white;
+}
+
+.calendar-day.in-range {
+  background: #fff3f0;
+}
+
+.calendar-day.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.calendar-day .price {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.calendar-day.selected .price {
+  color: white;
+}
+
+/* Room Rates Button */
+.room-rates-section {
+  text-align: center;
+}
+
+.room-rates-btn {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 32px;
+  border-radius: 25px;
+  min-width: 140px;
+}
+
+.room-rates-btn:hover {
+  background: linear-gradient(135deg, #e55a2b, #e8841a);
+  color: white;
+}
+
+/* Guest Modal Styles */
+.guest-modal {
+  position: fixed;
+  top: 70px;
+  right: 200px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 20px;
+  min-width: 350px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.room-item {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.room-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.room-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.room-close {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.guest-controls {
+  display: flex;
+  gap: 20px;
+}
+
+.guest-type {
+  flex: 1;
+}
+
+.guest-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.guest-type-label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.guest-type-subtitle {
+  font-size: 11px;
+  color: #666;
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.counter-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+}
+
+.counter-btn:hover {
+  background: #f0f0f0;
+}
+
+.counter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.counter-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Special Dropdown Menu */
+.special-dropdown-menu {
+  position: fixed;
+  top: 70px;
+  right: 120px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-item:hover {
+  background: #f8f9fa;
+}
+
+.dropdown-item.active {
+  background: #f0f8ff;
+  color: #ff6b35;
+}
+
+.dropdown-item .fas {
+  color: #ff6b35;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .search-input-container,
+  .date-selector,
+  .guest-selector,
+  .special-code-dropdown {
+    min-width: auto;
+    flex: 1;
+  }
+
+  .date-picker-modal {
+    min-width: 90vw;
+    left: 5vw;
+    transform: none;
+  }
+
+  .calendar-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
