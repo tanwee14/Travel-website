@@ -453,6 +453,38 @@ function openImageModal(imageSrc) {
   })
 }
 
+// Rate Details Modal Function
+function openRateDetailsModal(rateTitle) {
+  const modal = document.getElementById("rateDetailsModal")
+  const modalTitle = modal.querySelector(".rate-details-title")
+
+  // Update modal title based on clicked rate
+  modalTitle.textContent = rateTitle || "Best Available Rate Room Only"
+
+  // Show modal using Bootstrap
+  const bsModal = window.bootstrap.Modal.getOrCreateInstance(modal)
+  bsModal.show()
+}
+
+// Image Gallery Modal Function
+function openImageGallery() {
+  const modal = document.getElementById("imageGalleryModal")
+  const bsModal = window.bootstrap.Modal.getOrCreateInstance(modal)
+  bsModal.show()
+}
+
+// Change Gallery Image Function
+function changeGalleryImage(imageSrc) {
+  const mainImage = document.getElementById("galleryMainImage")
+  const thumbnails = document.querySelectorAll(".thumbnail")
+
+  mainImage.src = imageSrc
+
+  // Update active thumbnail
+  thumbnails.forEach((thumb) => thumb.classList.remove("active"))
+  event.target.classList.add("active")
+}
+
 // Utility Functions
 function showNotification(message, type = "info") {
   // Create notification element
@@ -548,6 +580,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.classList.contains("room-details-link") || e.target.classList.contains("rate-details-link")) {
       e.preventDefault()
       showNotification("Opening room details...", "info")
+    }
+
+    // Rate details links
+    if (e.target.classList.contains("rate-details-link")) {
+      e.preventDefault()
+      const rateOption = e.target.closest(".rate-option")
+      const rateTitle = rateOption.querySelector(".rate-title").textContent
+      openRateDetailsModal(rateTitle)
     }
   })
 

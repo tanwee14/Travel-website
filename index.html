@@ -124,25 +124,32 @@
 
     <!-- Main Content -->
     <div class="container-fluid">
-        <!-- Header Section -->
-        <div class="booking-header">
+        <!-- Enhanced Hero Section -->
+        <div class="hero-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="plan-stay-title">plan your stay</h2>
-                        <div class="progress-steps">
-                            <div class="step active">
-                                <span class="step-number">1</span>
-                                <span class="step-text">Select Room 1</span>
-                            </div>
-                            <div class="step-line"></div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <span class="step-text">Reservation</span>
-                            </div>
+                <div class="hero-card">
+                    <h2 class="plan-stay-title">plan your stay</h2>
+                    <div class="decorative-dots">
+                        <span class="dot orange"></span>
+                        <span class="dot red"></span>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step active">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Select Room 1</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Reservation</span>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Room Rates Button -->
+                <button class="btn hero-room-rates-btn">
+                    <i class="fas fa-bed me-2"></i>Room Rates
+                </button>
             </div>
         </div>
 
@@ -168,13 +175,16 @@
                         </div>
 
                         <!-- Room Card -->
-                        <div class="room-card">
+                        <div class="room-card rounded-card">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="room-image-container">
-                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-06-16%20221152-e9WI2SESkCSli12OvWkxhkMozQaNR2.png" alt="Luxe Queen Room" class="room-image" onclick="openImageModal(this.src)">
+                                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" alt="Luxe Queen Room" class="room-image" onclick="openImageModal(this.src)">
                                         <div class="image-overlay">
                                             <i class="fas fa-search-plus"></i>
+                                        </div>
+                                        <div class="image-gallery-icon" onclick="openImageGallery()">
+                                            <i class="fas fa-images"></i>
                                         </div>
                                     </div>
                                     <div class="room-title-section">
@@ -290,6 +300,78 @@
                                 <strong class="total-value">₹ 0.00</strong>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rate Details Modal -->
+    <div class="modal fade" id="rateDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rate-details-content">
+                <div class="modal-header rate-details-header">
+                    <h5 class="modal-title rate-details-title">Best Available Rate Room Only</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body rate-details-body">
+                    <div class="rate-section">
+                        <h6 class="rate-section-title">Rate Description</h6>
+                        <ul class="rate-description-list">
+                            <li>This rate includes room charges and WiFi for 2devices</li>
+                            <li>Applicable Taxes Extra</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="rate-section">
+                        <h6 class="rate-section-title">Cancellation Policy</h6>
+                        <p class="rate-policy-text">Free cancellation by 2PM - 1 day prior to arrival to avoid a penalty of 1 night charge plus any applicable taxes & fees.</p>
+                    </div>
+                    
+                    <div class="rate-section">
+                        <h6 class="rate-section-title">Guarantee Policy</h6>
+                        <p class="rate-policy-text">Reservations must be guaranteed by Credit Card and a tokenization will be done via the payment gateway</p>
+                    </div>
+                    
+                    <div class="rate-pricing-section">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="pricing-card members-rate">
+                                    <div class="rate-type-label">Members Rate</div>
+                                    <div class="rate-price">₹3,959</div>
+                                    <button class="btn btn-warning rate-btn">Login/Join</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pricing-card standard-rate">
+                                    <div class="rate-type-label">Standard Rate</div>
+                                    <div class="rate-price">₹4,499</div>
+                                    <button class="btn btn-outline-dark rate-btn">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div class="modal fade" id="imageGalleryModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content image-gallery-content">
+                <div class="modal-header image-gallery-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body image-gallery-body">
+                    <div class="main-image-container">
+                        <img id="galleryMainImage" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" alt="Room Image" class="gallery-main-image">
+                    </div>
+                    <div class="image-thumbnails">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-06-16%20221152-e9WI2SESkCSli12OvWkxhkMozQaNR2.png" alt="Room View 1" class="thumbnail active" onclick="changeGalleryImage(this.src)">
+                    </div>
+                    <div class="image-counter-gallery">
+                        <span id="galleryImageCounter">1 / 1</span>
                     </div>
                 </div>
             </div>

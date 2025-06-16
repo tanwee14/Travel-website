@@ -460,39 +460,87 @@ body {
   color: #ff6b35;
 }
 
-/* Header Section */
-.booking-header {
+/* Enhanced Hero Section */
+.hero-section {
   background: white;
-  padding: 20px 0;
+  padding: 30px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
+.hero-card {
+  background: linear-gradient(135deg, #fff9f0, #fff5e6);
+  border: 2px solid #ff8c00;
+  border-radius: 20px;
+  padding: 40px 30px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
 .plan-stay-title {
   font-family: "Brush Script MT", cursive;
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #333;
+  position: relative;
+  z-index: 2;
+}
+
+.decorative-dots {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.dot.orange {
+  background: #ff8c00;
+}
+
+.dot.red {
+  background: #dc3545;
 }
 
 .progress-steps {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 }
 
 .step-number {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #e9ecef;
   display: flex;
@@ -500,27 +548,53 @@ body {
   justify-content: center;
   font-weight: bold;
   color: #6c757d;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
 }
 
 .step.active .step-number {
-  background: #333;
+  background: #ff8c00;
   color: white;
+  border-color: #ff8c00;
 }
 
 .step-text {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #6c757d;
+  font-weight: 500;
 }
 
 .step.active .step-text {
   color: #333;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .step-line {
-  width: 100px;
-  height: 2px;
+  width: 120px;
+  height: 3px;
   background: #e9ecef;
+  border-radius: 2px;
+}
+
+.hero-room-rates-btn {
+  background: linear-gradient(135deg, #ff8c00, #ff7700);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-room-rates-btn:hover {
+  background: linear-gradient(135deg, #e67e00, #e66d00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+  color: white;
 }
 
 /* Room Rates Button Main */
@@ -1146,6 +1220,213 @@ body {
 
 .back-to-top.show {
   display: flex;
+}
+
+/* Rounded Card Styles */
+.rounded-card {
+  border-radius: 20px !important;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+.rounded-card .room-image-container {
+  border-radius: 15px;
+  position: relative;
+}
+
+.image-gallery-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.image-gallery-icon:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.image-gallery-icon i {
+  color: white;
+  font-size: 16px;
+}
+
+/* Rate Details Modal */
+.rate-details-content {
+  border-radius: 15px;
+  border: none;
+}
+
+.rate-details-header {
+  background: #fff9f0;
+  border-bottom: 1px solid #e9ecef;
+  border-radius: 15px 15px 0 0;
+  padding: 20px 25px;
+}
+
+.rate-details-title {
+  color: #ff8c00;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.rate-details-body {
+  padding: 25px;
+}
+
+.rate-section {
+  margin-bottom: 25px;
+}
+
+.rate-section-title {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.rate-description-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rate-description-list li {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.rate-description-list li:before {
+  content: "•";
+  color: #ff8c00;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.rate-policy-text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rate-pricing-section {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.pricing-card {
+  text-align: center;
+  padding: 15px;
+}
+
+.rate-type-label {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.rate-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.rate-btn {
+  padding: 8px 20px;
+  font-weight: 500;
+  border-radius: 6px;
+  min-width: 120px;
+}
+
+/* Image Gallery Modal */
+.image-gallery-content {
+  border-radius: 15px;
+  border: none;
+  background: #000;
+}
+
+.image-gallery-header {
+  background: transparent;
+  border: none;
+  padding: 15px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.image-gallery-header .btn-close {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  opacity: 1;
+}
+
+.image-gallery-body {
+  padding: 0;
+  text-align: center;
+}
+
+.main-image-container {
+  padding: 40px 20px 20px;
+}
+
+.gallery-main-image {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.image-thumbnails {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.thumbnail.active {
+  border-color: #ff8c00;
+}
+
+.thumbnail:hover {
+  border-color: #ff8c00;
+  opacity: 0.8;
+}
+
+.image-counter-gallery {
+  color: white;
+  font-size: 1rem;
+  padding: 0 0 20px 0;
 }
 
 /* Responsive Design */
