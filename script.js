@@ -1,4 +1,4 @@
-// Ginger Hotel Booking Navbar JavaScript
+// Hotel Booking Card Functionality
 
 class GingerBooking {
   constructor() {
@@ -8,7 +8,6 @@ class GingerBooking {
     }
 
     this.rooms = [{ adults: 1, children: 0 }]
-
     this.specialCode = "none"
 
     this.init()
@@ -19,6 +18,10 @@ class GingerBooking {
     this.generateCalendars()
     this.updateGuestDisplay()
     this.updateDateDisplay()
+    this.initializeRoomSelection()
+    this.initializePriceCalculation()
+    this.initializeImageModal()
+    this.initializeCheckboxes()
   }
 
   setupEventListeners() {
@@ -58,6 +61,7 @@ class GingerBooking {
     })
   }
 
+  // Header functionality
   toggleDatePicker() {
     const modal = document.getElementById("datePickerModal")
     modal.style.display = modal.style.display === "none" ? "block" : "none"
@@ -97,12 +101,8 @@ class GingerBooking {
     document.querySelectorAll(".dropdown-item").forEach((item) => {
       item.classList.remove("active")
     })
-    
-    
 
     document.querySelector(`[data-value="${value}"]`).classList.add("active")
-    
-
 
     // Update display text
     const text =
@@ -189,7 +189,7 @@ class GingerBooking {
   }
 
   selectDate(date) {
-    // Simple date selection logic - you can enhance this
+    // Simple date selection logic
     if (!this.selectedDates.checkin || date < this.selectedDates.checkin) {
       this.selectedDates.checkin = date
       this.selectedDates.checkout = new Date(date.getTime() + 24 * 60 * 60 * 1000)
@@ -295,17 +295,190 @@ class GingerBooking {
     const guestText = `${totalGuests} Guest${totalGuests !== 1 ? "s" : ""}, ${totalRooms} Room${totalRooms !== 1 ? "s" : ""}`
     document.getElementById("guestText").textContent = guestText
   }
+
+  // Room Selection Functionality
+  initializeRoomSelection() {
+    const selectButtons = document.querySelectorAll(".select-btn")
+    const loginButtons = document.querySelectorAll(".login-btn")
+
+    selectButtons.forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault()
+        handleRoomSelection(this)
+      })
+    })
+
+    loginButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault()
+        handleLogin()
+      })
+    })
+  }
+
+  // Price Calculation
+  initializePriceCalculation() {
+    const taxCheckbox = document.getElementById("showTaxes")
+
+    if (taxCheckbox) {
+      taxCheckbox.addEventListener("change", function () {
+        updatePriceDisplay(this.checked)
+      })
+    }
+  }
+
+  // Image Modal
+  initializeImageModal() {
+    // Modal will be handled by the openImageModal function called from HTML
+  }
+
+  // Checkbox functionality
+  initializeCheckboxes() {
+    const showTaxesCheckbox = document.getElementById("showTaxes")
+
+    if (showTaxesCheckbox) {
+      showTaxesCheckbox.addEventListener("change", function () {
+        const label = this.nextElementSibling
+        if (this.checked) {
+          label.style.fontWeight = "600"
+          label.style.color = "#333"
+        } else {
+          label.style.fontWeight = "normal"
+          label.style.color = "#6c757d"
+        }
+      })
+    }
+  }
 }
 
-// Initialize the booking system when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  window.booking = new GingerBooking()
-})
+// Room Selection Functions
+function handleRoomSelection(button) {
+  // Get price from the same rate option
+  const rateOption = button.closest(".rate-option")
+  const priceElement = rateOption.querySelector(".price")
+  const price = priceElement.textContent.replace("₹", "").replace(",", "")
 
+  // Get room title
+  const roomCard = button.closest(".room-card")
+  const roomTitle = roomCard.querySelector(".room-title").textContent
+
+  // Update sidebar
+  updateSidebar(roomTitle, price)
+
+  // Visual feedback
+  button.textContent = "Selected"
+  button.classList.remove("btn-outline-dark")
+  button.classList.add("btn-success")
+  button.disabled = true
+
+  // Reset other select buttons in the same room
+  const otherButtons = roomCard.querySelectorAll(".select-btn")
+  otherButtons.forEach((btn) => {
+    if (btn !== button) {
+      btn.textContent = "Select"
+      btn.classList.remove("btn-success")
+      btn.classList.add("btn-outline-dark")
+      btn.disabled = false
+    }
+  })
+
+  // Show success message
+  showNotification("Room selected successfully!", "success")
+}
+
+function handleLogin() {
+  showNotification("Please login to access member rates", "info")
+}
+
+function updateSidebar(roomTitle, price) {
+  const notSelectedElement = document.querySelector(".not-selected")
+  const priceElements = document.querySelectorAll(".price-value")
+  const totalElement = document.querySelector(".total-value")
+
+  if (notSelectedElement) {
+    notSelectedElement.textContent = roomTitle
+    notSelectedElement.classList.remove("not-selected")
+    notSelectedElement.style.color = "#333"
+    notSelectedElement.style.fontWeight = "500"
+  }
+
+  // Update price
+  const basePrice = Number.parseFloat(price)
+  const taxes = basePrice * 0.18 // 18% tax
+  const total = basePrice + taxes
+
+  if (priceElements.length >= 2) {
+    priceElements[0].textContent = `₹ ${basePrice.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
+    priceElements[1].textContent = `₹ ${taxes.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
+  }
+
+  if (totalElement) {
+    totalElement.textContent = `₹ ${total.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
+  }
+}
+
+function updatePriceDisplay(showTaxes) {
+  const priceElements = document.querySelectorAll(".price")
+
+  priceElements.forEach((priceElement) => {
+    const basePrice = Number.parseFloat(priceElement.textContent.replace("₹", "").replace(",", ""))
+
+    if (showTaxes) {
+      const withTaxes = basePrice * 1.18 // Add 18% tax
+      priceElement.textContent = `₹${withTaxes.toLocaleString("en-IN")}`
+      priceElement.style.color = "#dc3545"
+    } else {
+      priceElement.textContent = `₹${basePrice.toLocaleString("en-IN")}`
+      priceElement.style.color = "#333"
+    }
+  })
+}
+
+// Image Modal Function
+function openImageModal(imageSrc) {
+  const modal = document.getElementById("imageModal")
+  const modalImage = document.getElementById("modalImage")
+  const imageCounter = document.getElementById("imageCounter")
+
+  modalImage.src = imageSrc
+  imageCounter.textContent = "1 / 1"
+
+  modal.style.display = "block"
+
+  // Add keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.style.display = "none"
+    }
+  })
+}
+
+// Utility Functions
+function showNotification(message, type = "info") {
+  // Create notification element
+  const notification = document.createElement("div")
+  notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`
+  notification.style.cssText = "top: 20px; right: 20px; z-index: 9999; min-width: 300px;"
+  notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `
+
+  document.body.appendChild(notification)
+
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.remove()
+    }
+  }, 3000)
+}
+
+function clearSearch() {
+  document.querySelector(".search-input").value = ""
+}
 
 // Footer functionality
-
-// Newsletter subscription
 function subscribeNewsletter() {
   const email = document.getElementById("subscriptionEmail").value
 
@@ -324,13 +497,11 @@ function subscribeNewsletter() {
   document.getElementById("subscriptionEmail").value = ""
 }
 
-// Email validation
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
 
-// Toggle destinations section
 function toggleDestinations() {
   const content = document.getElementById("destinationsContent")
   const toggle = document.getElementById("destinationsToggle")
@@ -348,7 +519,6 @@ function toggleDestinations() {
   }
 }
 
-// Back to top functionality
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -356,18 +526,51 @@ function scrollToTop() {
   })
 }
 
-// Show/hide back to top button based on scroll position
-window.addEventListener("scroll", () => {
-  const backToTopBtn = document.getElementById("backToTop")
-  if (window.pageYOffset > 300) {
-    backToTopBtn.classList.add("show")
-  } else {
-    backToTopBtn.classList.remove("show")
-  }
-})
-
-// Add enter key support for newsletter subscription
+// Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
+  window.booking = new GingerBooking()
+
+  // View More Rates functionality
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("view-more-btn")) {
+      e.preventDefault()
+      showNotification("Loading more rates...", "info")
+
+      // Simulate loading more rates
+      setTimeout(() => {
+        showNotification("More rates loaded successfully!", "success")
+      }, 1500)
+    }
+  })
+
+  // Room details links
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("room-details-link") || e.target.classList.contains("rate-details-link")) {
+      e.preventDefault()
+      showNotification("Opening room details...", "info")
+    }
+  })
+
+  // Sidebar accordion functionality
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("fa-chevron-up") || e.target.classList.contains("fa-chevron-down")) {
+      const icon = e.target
+      const section = icon.closest(".sidebar-section")
+      const content = section.querySelector(".room-config, .not-selected")
+
+      if (icon.classList.contains("fa-chevron-up")) {
+        icon.classList.remove("fa-chevron-up")
+        icon.classList.add("fa-chevron-down")
+        if (content) content.style.display = "none"
+      } else {
+        icon.classList.remove("fa-chevron-down")
+        icon.classList.add("fa-chevron-up")
+        if (content) content.style.display = "block"
+      }
+    }
+  })
+
+  // Newsletter subscription enter key support
   const subscriptionInput = document.getElementById("subscriptionEmail")
   if (subscriptionInput) {
     subscriptionInput.addEventListener("keypress", (e) => {
@@ -378,3 +581,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
 
+// Show/hide back to top button based on scroll position
+window.addEventListener("scroll", () => {
+  const backToTopBtn = document.getElementById("backToTop")
+  if (window.pageYOffset > 300) {
+    backToTopBtn.classList.add("show")
+  } else {
+    backToTopBtn.classList.remove("show")
+  }
+})
