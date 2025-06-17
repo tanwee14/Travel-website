@@ -769,5 +769,99 @@ window.addEventListener("scroll", () => {
   }
 })
 
+// Add these functions to your existing JavaScript file
+
+// Price data for different accommodation types
+const accommodationPrices = {
+  "room-only": { price: 3500, label: "Room Only" },
+  "room-breakfast": { price: 4200, label: "Room With Breakfast" },
+  "room-all-meals": { price: 7800, label: "Room With All MJ Meal" },
+  "room-bf-meal": { price: 5500, label: "Room With B/F & 1 MJ Meal" },
+}
+
+// Function to show notifications
+function showNotification(message, type) {
+  console.log(`Notification (${type}): ${message}`)
+  // Implement actual notification logic here
+}
+
+// Function to update sidebar
+function updateSidebar(roomName, price) {
+  console.log(`Sidebar updated with room: ${roomName} and price: ₹${price}`)
+  // Implement actual sidebar update logic here
+}
+
+// Update price based on accommodation selection
+function updatePrice(accommodationType) {
+  const priceData = accommodationPrices[accommodationType]
+  const priceAmountElement = document.getElementById("priceAmount")
+
+  if (priceData && priceAmountElement) {
+    priceAmountElement.textContent = `₹${priceData.price.toLocaleString("en-IN")}`
+
+    // Update date (you can modify this logic as needed)
+    const priceDateElement = document.getElementById("priceDate")
+    if (priceDateElement) {
+      const today = new Date()
+      const formattedDate = today.toLocaleDateString("en-GB")
+      priceDateElement.textContent = formattedDate
+    }
+
+    // Show notification
+    showNotification(`Price updated to ${priceData.label}: ₹${priceData.price.toLocaleString("en-IN")}`, "success")
+  }
+}
+
+// Change main image when thumbnail is clicked
+function changeMainImage(imageSrc) {
+  const mainImage = document.querySelector(".main-image")
+  if (mainImage) {
+    mainImage.src = imageSrc
+
+    // Add fade effect
+    mainImage.style.opacity = "0.7"
+    setTimeout(() => {
+      mainImage.style.opacity = "1"
+    }, 200)
+  }
+}
+
+// Handle booking button click
+function handleBooking() {
+  const selectedAccommodation = document.getElementById("accommodationSelect").value
+  const priceData = accommodationPrices[selectedAccommodation]
+
+  if (priceData) {
+    showNotification(`Booking ${priceData.label} for ₹${priceData.price.toLocaleString("en-IN")}`, "info")
+
+    // Update sidebar with selected room
+    updateSidebar("Super Deluxe Room", priceData.price.toString())
+
+    // You can add more booking logic here
+    setTimeout(() => {
+      showNotification("Redirecting to booking confirmation...", "success")
+    }, 1500)
+  }
+}
+
+// Initialize the room card functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Set initial price
+  updatePrice("room-all-meals")
+
+  // Add hover effects to thumbnails
+  const thumbnails = document.querySelectorAll(".room-thumbnail")
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("mouseenter", function () {
+      this.style.transform = "scale(1.05)"
+    })
+
+    thumbnail.addEventListener("mouseleave", function () {
+      this.style.transform = "scale(1)"
+    })
+  })
+})
+
+
 
 //Event Listerner for calendar

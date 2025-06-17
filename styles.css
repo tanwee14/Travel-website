@@ -1545,3 +1545,219 @@ body {
     text-align: center;
   }
 }
+
+/* Add these styles to your existing CSS file */
+
+/* White Card Background */
+.white-card {
+  background: white !important;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Multiple Images Gallery */
+.room-images-gallery {
+  margin-bottom: 15px;
+}
+
+.main-room-image-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.main-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.02);
+}
+
+.image-thumbnails-row {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.thumbnail-container {
+  flex: 1;
+  height: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.room-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.room-thumbnail:hover {
+  opacity: 0.8;
+}
+
+.view-all {
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-all-overlay {
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+.view-all-overlay i {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+/* Room Facilities */
+.room-facilities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.facility-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.facility-item i {
+  color: #ff6b35;
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+/* Room Description */
+.room-description {
+  font-size: 13px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+/* Pricing Section */
+.pricing-section {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.accommodation-dropdown {
+  margin: 10px 0;
+}
+
+.accommodation-select {
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: white;
+  color: #333;
+}
+
+.accommodation-select:focus {
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+.pricing-display {
+  text-align: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.price-container {
+  margin-bottom: 15px;
+}
+
+.current-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.price-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+}
+
+.price-period {
+  font-size: 14px;
+  color: #666;
+}
+
+.price-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.book-now-btn {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.book-now-btn:hover {
+  background: linear-gradient(135deg, #e55a2b, #e8841a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .room-facilities {
+    grid-template-columns: 1fr;
+  }
+
+  .image-thumbnails-row {
+    gap: 4px;
+  }
+
+  .thumbnail-container {
+    height: 40px;
+  }
+
+  .pricing-section .row {
+    flex-direction: column;
+  }
+
+  .pricing-display {
+    margin-top: 15px;
+  }
+}
+
