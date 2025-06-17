@@ -598,6 +598,44 @@ body {
 }
 
 /* Room Rates Button Main */
+.price-and-button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* optional spacing between items */
+    padding: 10px 0;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.price-amount {
+    margin-right: 5px;
+}
+
+.price-period {
+    font-size: 14px;
+    color: #666;
+}
+
+.price-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.book-now-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
 .room-rates-btn-main {
   background: #ff8c00;
   border: none;
@@ -698,6 +736,7 @@ body {
   color: #dc3545;
   text-decoration: underline;
   font-size: 0.9rem;
+  padding: 4px;
 }
 
 .availability-alert {

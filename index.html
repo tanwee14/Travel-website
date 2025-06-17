@@ -131,10 +131,7 @@
             <div class="container">
                 <div class="hero-card">
                     <h2 class="plan-stay-title">plan your stay</h2>
-                    <div class="decorative-dots">
-                        <span class="dot orange"></span>
-                        <span class="dot red"></span>
-                    </div>
+                    
                     <div class="progress-steps">
                         <div class="step active">
                             <span class="step-number">1</span>
@@ -176,11 +173,17 @@
                             </div>
                         </div>
 
-                        <!-- Room Card -->
-                        <!-- Replace the existing room card section in your HTML with this updated version -->
-<div class="room-card white-card rounded-card">
+                        
+    <!--Room card-->
+    <div class="room-card white-card rounded-card">
+    <!-- Room Title Header -->
+    <!-- <div class="room-header">
+        <h5 class="room-title">Super Deluxe Room</h5>
+        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
+    </div> -->
+    
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <!-- Multiple Images Gallery -->
             <div class="room-images-gallery">
                 <div class="main-room-image-container">
@@ -216,96 +219,189 @@
                 </div>
             </div>
             
-                <div class="room-title-section">
-                    <h5 class="room-title">Super Deluxe Room</h5>
-                    <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
-                    
-                    <!-- Facilities Icons -->
-                    <div class="room-facilities">
-                        <div class="facility-item">
-                            <i class="fas fa-wind"></i>
-                            <span>Hair Dryer</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-shower"></i>
-                            <span>Rain Shower</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-wifi"></i>
-                            <span>Wi-Fi Inclusive</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-snowflake"></i>
-                            <span>Air Conditioner</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-lock"></i>
-                            <span>Electronic Safe</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-tv"></i>
-                            <span>LED TV</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-tshirt"></i>
-                            <span>Ironing Board</span>
-                        </div>
-                        <div class="facility-item">
-                            <i class="fas fa-coffee"></i>
-                            <span>Tea & Coffee Maker</span>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
-                </div>
-            </div>
             
-            <div class="col-md-8">
-                <div class="availability-alert">
-                    <i class="fas fa-exclamation-triangle text-danger"></i>
-                    <span class="text-danger">Last 5 Rooms Available</span>
+            <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
+        </div>
+        
+        <div class="col-md-7">
+            <!-- Single Price with Accommodation Dropdown -->
+             <div class="room-title-section">
+        <h5 class="room-title">Super Deluxe Room</h5>
+        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
+    </div>
+            <div class="pricing-section">
+                <h6 class="rate-title">Room Category</h6>
+               
+                <div class="accommodation-dropdown">
+                    <select class="form-select accommodation-select" id="accommodationSelect" onchange="updatePrice(this.value)">
+                        <option value="room-only" data-price="3500">Room Only</option>
+                        <option value="room-breakfast" data-price="4200">Room With Breakfast</option>
+                        <option value="room-all-meals" data-price="7800" selected>Room With All MJ Meal</option>
+                        <option value="room-bf-meal" data-price="5500">Room With B/F & 1 MJ Meal</option>
+                    </select>
                 </div>
-
-                <!-- Single Price with Accommodation Dropdown -->
-                <div class="pricing-section">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h6 class="rate-title">Room Rate Options</h6>
-                            <div class="accommodation-dropdown">
-                                <select class="form-select accommodation-select" id="accommodationSelect" onchange="updatePrice(this.value)">
-                                    <option value="room-only" data-price="3500">Room Only</option>
-                                    <option value="room-breakfast" data-price="4200">Room With Breakfast</option>
-                                    <option value="room-all-meals" data-price="7800" selected>Room With All MJ Meal</option>
-                                    <option value="room-bf-meal" data-price="5500">Room With B/F & 1 MJ Meal</option>
-                                </select>
+                
+                <ul class="rate-features">
+                    <!-- <li>This rate includes room charges and WiFi for 2 devices</li> -->
+                    <li>Applicable Taxes Extra</li>
+                </ul>
+                
+                <a href="#" class="rate-details-link" onclick="openRateDetailsModal('Best Available Rate Room Only'); return false;">Rate details</a>
+                
+                <!-- Pricing Display -->
+                <div class="pricing-display">
+                    <div class="price-and-button-row">
+                        <div class="price-container">
+                            <div class="current-price">
+                                <span class="price-amount" id="priceAmount">₹7,800</span>
+                                <span class="price-period">/ Night</span>
                             </div>
-                            <ul class="rate-features">
-                                <li>This rate includes room charges and WiFi for 2 devices</li>
-                                <li>Applicable Taxes Extra</li>
-                            </ul>
-                            <a href="#" class="rate-details-link" onclick="openRateDetailsModal('Best Available Rate Room Only'); return false;">Rate details</a>
+                            <div class="price-date" id="priceDate">23/07/2025</div>
                         </div>
-                        
-                        <div class="col-md-6">
-                            <div class="pricing-display">
-                                <div class="price-container">
-                                    <div class="current-price">
-                                        <span class="price-amount" id="priceAmount">₹7,800</span>
-                                        <span class="price-period">/ Night</span>
-                                    </div>
-                                    <div class="price-date" id="priceDate">23/07/2025</div>
-                                </div>
-                                <button class="btn btn-primary book-now-btn" onclick="handleBooking()">
-                                    BOOK NOW
-                                </button>
-                            </div>
-                        </div>
+                        <button class="btn btn-primary book-now-btn" onclick="handleBooking()">
+                            BOOK NOW
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Availability Alert moved to bottom with full width -->
+    <div class="availability-alert">
+        <i class="fas fa-exclamation-triangle text-danger"></i>
+        <span class="text-danger">Last 5 Rooms Available</span>
+    </div>
+</div>
 
+    <div class="room-card white-card rounded-card">
+    
+    
+    <div class="row">
+        <div class="col-md-5">
+            <!-- Multiple Images Gallery -->
+            <div class="room-images-gallery">
+                <div class="main-room-image-container">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" 
+                        alt="Super Deluxe Room" 
+                        class="room-image main-image" 
+                        onclick="openImageGallery(0)">
+                    <div class="image-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Image Thumbnails -->
+                <div class="image-thumbnails-row">
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?fm=jpg&q=60&w=3000" 
+                             alt="Room View 2" class="room-thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?fm=jpg&q=60&w=3000" 
+                             alt="Room View 3" class="room-thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?fm=jpg&q=60&w=3000" 
+                             alt="Room View 4" class="room-thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="thumbnail-container view-all" onclick="openImageGallery(0)">
+                        <div class="view-all-overlay">
+                            <i class="fas fa-images"></i>
+                            <span>+3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Facilities Icons -->
+            <div class="room-facilities">
+                 <div class="facility-item">
+                    <i class="fas fa-wind"></i>
+                    <span>Hair Dryer</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-shower"></i>
+                    <span>Rain Shower</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Wi-Fi Inclusive</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Air Conditioner</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-lock"></i>
+                    <span>Electronic Safe</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-tv"></i>
+                    <span>LED TV</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Ironing Board</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-coffee"></i>
+                    <span>Tea & Coffee Maker</span>
+                </div>
+            </div>
+            
+            <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
+        </div>
+        
+        <div class="col-md-7">
+            <!-- Single Price with Accommodation Dropdown -->
+             <div class="room-title-section">
+        <h5 class="room-title">Super Deluxe Room</h5>
+        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
+    </div>
+            <div class="pricing-section">
+                
+                <h6 class="rate-title">Room Category</h6>
+               
+                <div class="accommodation-dropdown">
+                    <select class="form-select accommodation-select" id="accommodationSelect" onchange="updatePrice(this.value)">
+                        <option value="room-only" data-price="3500">Room Only</option>
+                        <option value="room-breakfast" data-price="4200">Room With Breakfast</option>
+                        <option value="room-all-meals" data-price="7800" selected>Room With All MJ Meal</option>
+                        <option value="room-bf-meal" data-price="5500">Room With B/F & 1 MJ Meal</option>
+                    </select>
+                </div>
+                
+                <ul class="rate-features">
+                    <li>This rate includes room charges and WiFi for 2 devices</li>
+                    <li>Applicable Taxes Extra</li>
+                </ul>
+                
+                <a href="#" class="rate-details-link" onclick="openRateDetailsModal('Best Available Rate Room Only'); return false;">Rate details</a>
+                
+                <!-- Pricing Display -->
+                <div class="pricing-display">
+                    <div class="price-container">
+                        <div class="current-price">
+                            <span class="price-amount" id="priceAmount">₹7,800</span>
+                            <span class="price-period">/ Night</span>
+                        </div>
+                        <div class="price-date" id="priceDate">23/07/2025</div>
+                    </div>
+                    <button class="btn btn-primary book-now-btn" onclick="handleBooking()">
+                        BOOK NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Availability Alert moved to bottom with full width -->
+    <div class="availability-alert">
+        <i class="fas fa-exclamation-triangle text-danger"></i>
+        <span class="text-danger">Last 5 Rooms Available</span>
+    </div>
+</div>
 
                         <!-- View More Rates Button -->
                         <div class="text-center mt-4">
