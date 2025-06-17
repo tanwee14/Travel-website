@@ -6,7 +6,9 @@ class GingerBooking {
       checkin: new Date(2025, 5, 17), // June 17, 2025
       checkout: new Date(2025, 5, 18), // June 18, 2025
     }
-
+    const today = new Date()
+    this.currentYear = today.getFullYear()
+    this.currentMonth = today.getMonth()
     this.rooms = [{ adults: 1, children: 0 }]
     this.specialCode = "none"
 
@@ -123,59 +125,168 @@ class GingerBooking {
     this.generateCalendar("julyCalendar", 2025, 6) // July 2025
   }
 
+  // generateCalendar(containerId, year, month) {
+  //   const container = document.getElementById(containerId)
+  //   const firstDay = new Date(year, month, 1)
+  //   const lastDay = new Date(year, month + 1, 0)
+  //   const daysInMonth = lastDay.getDate()
+  //   const startingDayOfWeek = firstDay.getDay()
+
+  //   // Clear container
+  //   container.innerHTML = ""
+
+  //   // Add day headers
+  //   const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  //   dayHeaders.forEach((day) => {
+  //     const header = document.createElement("div")
+  //     header.className = "calendar-day-header"
+  //     header.textContent = day
+  //     container.appendChild(header)
+  //   })
+
+  //   // Add empty cells for days before month starts
+  //   for (let i = 0; i < startingDayOfWeek; i++) {
+  //     const emptyDay = document.createElement("div")
+  //     emptyDay.className = "calendar-day disabled"
+  //     container.appendChild(emptyDay)
+  //   }
+
+  //   // Add days of the month
+  //   for (let day = 1; day <= daysInMonth; day++) {
+  //     const dayElement = document.createElement("div")
+  //     dayElement.className = "calendar-day"
+
+  //     const currentDate = new Date(year, month, day)
+  //     const isSelected = this.isDateSelected(currentDate)
+  //     const isInRange = this.isDateInRange(currentDate)
+
+  //     if (isSelected) {
+  //       dayElement.classList.add("selected")
+  //     } else if (isInRange) {
+  //       dayElement.classList.add("in-range")
+  //     }
+
+  //     dayElement.innerHTML = `
+  //               <span>${day}</span>
+  //               <span class="price">₹4.4K</span>
+  //           `
+
+  //     dayElement.addEventListener("click", () => {
+  //       this.selectDate(currentDate)
+  //     })
+
+  //     container.appendChild(dayElement)
+  //   }
+  // }
+
   generateCalendar(containerId, year, month) {
-    const container = document.getElementById(containerId)
-    const firstDay = new Date(year, month, 1)
-    const lastDay = new Date(year, month + 1, 0)
-    const daysInMonth = lastDay.getDate()
-    const startingDayOfWeek = firstDay.getDay()
+  const container = document.getElementById(containerId)
+  const firstDay = new Date(year, month, 1)
+  const lastDay = new Date(year, month + 1, 0)
+  const daysInMonth = lastDay.getDate()
+  const startingDayOfWeek = firstDay.getDay()
 
-    // Clear container
-    container.innerHTML = ""
+  // Clear container
+  container.innerHTML = ""
 
-    // Add day headers
-    const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    dayHeaders.forEach((day) => {
-      const header = document.createElement("div")
-      header.className = "calendar-day-header"
-      header.textContent = day
-      container.appendChild(header)
+  // Add day headers
+  const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  dayHeaders.forEach((day) => {
+    const header = document.createElement("div")
+    header.className = "calendar-day-header"
+    header.textContent = day
+    container.appendChild(header)
+  })
+
+  // Add empty cells before the 1st of the month
+  for (let i = 0; i < startingDayOfWeek; i++) {
+    const emptyDay = document.createElement("div")
+    emptyDay.className = "calendar-day disabled"
+    container.appendChild(emptyDay)
+  }
+
+  // Add actual days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayElement = document.createElement("div")
+    dayElement.className = "calendar-day"
+
+    const currentDate = new Date(year, month, day)
+    const isSelected = this.isDateSelected(currentDate)
+    const isInRange = this.isDateInRange(currentDate)
+
+    if (isSelected) {
+      dayElement.classList.add("selected")
+    } else if (isInRange) {
+      dayElement.classList.add("in-range")
+    }
+
+    dayElement.innerHTML = `
+      <span>${day}</span>
+      <span class="price">₹4.4K</span>
+    `
+
+    dayElement.addEventListener("click", () => {
+      this.selectDate(currentDate)
     })
 
-    // Add empty cells for days before month starts
-    for (let i = 0; i < startingDayOfWeek; i++) {
-      const emptyDay = document.createElement("div")
-      emptyDay.className = "calendar-day disabled"
-      container.appendChild(emptyDay)
-    }
-
-    // Add days of the month
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayElement = document.createElement("div")
-      dayElement.className = "calendar-day"
-
-      const currentDate = new Date(year, month, day)
-      const isSelected = this.isDateSelected(currentDate)
-      const isInRange = this.isDateInRange(currentDate)
-
-      if (isSelected) {
-        dayElement.classList.add("selected")
-      } else if (isInRange) {
-        dayElement.classList.add("in-range")
-      }
-
-      dayElement.innerHTML = `
-                <span>${day}</span>
-                <span class="price">₹4.4K</span>
-            `
-
-      dayElement.addEventListener("click", () => {
-        this.selectDate(currentDate)
-      })
-
-      container.appendChild(dayElement)
-    }
+    container.appendChild(dayElement)
   }
+}
+initializeCalendar() {
+  const today = new Date()
+  this.currentYear = today.getFullYear()
+  this.currentMonth = today.getMonth()
+  this.selectedDates = {
+    checkin: new Date(today),
+    checkout: new Date(today.getTime() + 24 * 60 * 60 * 1000)
+  }
+
+  this.generateCalendars()
+
+  document.getElementById("prevMonth").addEventListener("click", () => {
+    if (this.currentMonth > 0) {
+      this.currentMonth--
+    } else {
+      this.currentMonth = 11
+      this.currentYear--
+    }
+    this.generateCalendars()
+  })
+
+  document.getElementById("nextMonth").addEventListener("click", () => {
+    if (this.currentMonth < 11) {
+      this.currentMonth++
+    } else {
+      this.currentMonth = 0
+      this.currentYear++
+    }
+    this.generateCalendars()
+  })
+}
+
+  generateCalendars() {
+  const leftMonth = this.currentMonth
+  const rightMonth = this.currentMonth + 1
+  const year = this.currentYear
+
+  // Update headers
+  document.getElementById("leftMonthHeader").textContent = 
+    `${this.getMonthName(leftMonth)} ${year}`
+  document.getElementById("rightMonthHeader").textContent = 
+    `${this.getMonthName(rightMonth)} ${rightMonth > 11 ? year + 1 : year}`
+
+  // Handle year rollover
+  this.generateCalendar("leftCalendar", year, leftMonth)
+  if (rightMonth > 11) {
+    this.generateCalendar("rightCalendar", year + 1, 0)
+  } else {
+    this.generateCalendar("rightCalendar", year, rightMonth)
+  }
+}
+getMonthName(monthIndex) {
+  return new Date(2000, monthIndex).toLocaleString("default", { month: "long" })
+}
+
 
   isDateSelected(date) {
     return (
@@ -211,6 +322,25 @@ class GingerBooking {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     return `${date.getDate()} ${months[date.getMonth()]}`
   }
+  handlePrevMonth() {
+  if (this.currentMonth === 0) {
+    this.currentMonth = 11
+    this.currentYear -= 1
+  } else {
+    this.currentMonth -= 1
+  }
+  this.generateCalendars()
+}
+
+handleNextMonth() {
+  if (this.currentMonth === 11) {
+    this.currentMonth = 0
+    this.currentYear += 1
+  } else {
+    this.currentMonth += 1
+  }
+  this.generateCalendars()
+}
 
   generateRoomsModal() {
     const container = document.getElementById("roomsContainer")
@@ -561,7 +691,15 @@ function scrollToTop() {
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
   window.booking = new GingerBooking()
+  //Event Listner for Calendar
 
+  document.getElementById("prevMonth").addEventListener("click", () => {
+  window.booking.handlePrevMonth()
+})
+
+document.getElementById("nextMonth").addEventListener("click", () => {
+  window.booking.handleNextMonth()
+})
   // View More Rates functionality
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("view-more-btn")) {
@@ -630,3 +768,6 @@ window.addEventListener("scroll", () => {
     backToTopBtn.classList.remove("show")
   }
 })
+
+
+//Event Listerner for calendar
