@@ -1760,4 +1760,357 @@ body {
     margin-top: 15px;
   }
 }
+/* Add these styles to your existing CSS file */
+
+/* Modal Overlay Base */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  z-index: 10;
+}
+
+.modal-title {
+  color: #ff8c00;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  background: #e9ecef;
+  transform: scale(1.1);
+}
+
+.modal-close-btn i {
+  color: #666;
+  font-size: 16px;
+}
+
+.modal-content {
+  padding: 25px 30px 30px;
+}
+
+/* Rate Details Modal Specific */
+.rate-details-modal {
+  max-width: 700px;
+}
+
+.rate-section {
+  margin-bottom: 25px;
+}
+
+.rate-section h4 {
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.rate-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rate-list li {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.rate-list li:before {
+  content: "•";
+  color: #ff8c00;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.rate-section p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rate-pricing-bottom {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.pricing-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.price-option {
+  text-align: center;
+  flex: 1;
+  max-width: 200px;
+}
+
+.rate-type {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.rate-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.rate-btn {
+  padding: 8px 20px;
+  font-weight: 500;
+  border-radius: 6px;
+  min-width: 120px;
+}
+
+/* Room Details Modal Specific */
+.room-details-modal {
+  max-width: 750px;
+}
+
+.room-details-section {
+  margin-bottom: 30px;
+}
+
+.room-details-section h4 {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.room-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.feature-item i {
+  color: #ff8c00;
+  font-size: 16px;
+  width: 20px;
+}
+
+.feature-item span {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.amenities-detailed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.amenity-category h5 {
+  color: #ff8c00;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.amenity-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.amenity-category li {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.amenity-category li:before {
+  content: "✓";
+  color: #28a745;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Image Gallery Modal Specific */
+.image-gallery-modal {
+  max-width: 900px;
+  max-height: 95vh;
+}
+
+.image-gallery-modal .modal-header {
+  padding: 15px 20px;
+  border-bottom: none;
+  justify-content: flex-end;
+}
+
+.gallery-main-image {
+  text-align: center;
+  padding: 20px;
+}
+
+.gallery-main-image img {
+  max-width: 100%;
+  max-height: 60vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px 10px;
+  flex-wrap: wrap;
+}
+
+.thumbnail-item {
+  width: 80px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.thumbnail-item.active {
+  border-color: #ff8c00;
+}
+
+.thumbnail-item:hover {
+  border-color: #ff8c00;
+  opacity: 0.8;
+}
+
+.thumbnail-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-counter {
+  text-align: center;
+  padding: 10px 20px 20px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-container {
+    margin: 10px;
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    padding: 20px 20px 10px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .pricing-options {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .room-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amenities-detailed {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .gallery-thumbnails {
+    gap: 5px;
+  }
+
+  .thumbnail-item {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .rate-price {
+    font-size: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+}
 

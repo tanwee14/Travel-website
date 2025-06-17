@@ -862,6 +862,181 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+// Add these functions to your existing JavaScript file
+
+// Global variables for image gallery
+let currentImageIndex = 0
+const galleryImages = [
+  "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww",
+  "https://images.unsplash.com/photo-1566665797739-1674de7a421a?fm=jpg&q=60&w=3000",
+  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?fm=jpg&q=60&w=3000",
+  "https://images.unsplash.com/photo-1590490360182-c33d57733427?fm=jpg&q=60&w=3000",
+]
+
+// Rate Details Modal Functions
+function openRateDetailsModal(rateTitle = "Best Available Rate Room Only") {
+  const overlay = document.getElementById("rateDetailsOverlay")
+  const titleElement = document.getElementById("rateModalTitle")
+
+  if (titleElement) {
+    titleElement.textContent = rateTitle
+  }
+
+  overlay.style.display = "flex"
+  document.body.style.overflow = "hidden" // Prevent background scrolling
+
+  // Add animation
+  setTimeout(() => {
+    overlay.style.opacity = "1"
+  }, 10)
+}
+
+function closeRateDetailsModal() {
+  const overlay = document.getElementById("rateDetailsOverlay")
+  overlay.style.display = "none"
+  document.body.style.overflow = "auto" // Restore scrolling
+}
+
+// Room Details Modal Functions
+function openRoomDetailsModal() {
+  const overlay = document.getElementById("roomDetailsOverlay")
+  overlay.style.display = "flex"
+  document.body.style.overflow = "hidden"
+
+  // Add animation
+  setTimeout(() => {
+    overlay.style.opacity = "1"
+  }, 10)
+}
+
+function closeRoomDetailsModal() {
+  const overlay = document.getElementById("roomDetailsOverlay")
+  overlay.style.display = "none"
+  document.body.style.overflow = "auto"
+}
+
+// Image Gallery Modal Functions
+function openImageGallery(startIndex = 0) {
+  const overlay = document.getElementById("imageGalleryOverlay")
+  currentImageIndex = startIndex
+
+  updateGalleryImage()
+  overlay.style.display = "flex"
+  document.body.style.overflow = "hidden"
+
+  // Add keyboard navigation
+  document.addEventListener("keydown", handleGalleryKeyboard)
+}
+
+function closeImageGallery() {
+  const overlay = document.getElementById("imageGalleryOverlay")
+  overlay.style.display = "none"
+  document.body.style.overflow = "auto"
+
+  // Remove keyboard navigation
+  document.removeEventListener("keydown", handleGalleryKeyboard)
+}
+
+function changeGalleryImage(thumbnailElement, imageSrc) {
+  const mainImage = document.getElementById("galleryCurrentImage")
+  const thumbnails = document.querySelectorAll(".thumbnail-item")
+
+  // Update main image
+  mainImage.src = imageSrc
+
+  // Update active thumbnail
+  thumbnails.forEach((thumb) => thumb.classList.remove("active"))
+  thumbnailElement.classList.add("active")
+
+  // Update current index
+  currentImageIndex = Array.from(thumbnails).indexOf(thumbnailElement)
+  updateImageCounter()
+}
+
+function updateGalleryImage() {
+  const mainImage = document.getElementById("galleryCurrentImage")
+  const thumbnails = document.querySelectorAll(".thumbnail-item")
+
+  if (galleryImages[currentImageIndex]) {
+    mainImage.src = galleryImages[currentImageIndex]
+
+    // Update active thumbnail
+    thumbnails.forEach((thumb, index) => {
+      thumb.classList.toggle("active", index === currentImageIndex)
+    })
+
+    updateImageCounter()
+  }
+}
+
+function updateImageCounter() {
+  const counter = document.getElementById("imageCounter")
+  if (counter) {
+    counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`
+  }
+}
+
+function handleGalleryKeyboard(e) {
+  switch (e.key) {
+    case "Escape":
+      closeImageGallery()
+      break
+    case "ArrowLeft":
+      if (currentImageIndex > 0) {
+        currentImageIndex--
+        updateGalleryImage()
+      }
+      break
+    case "ArrowRight":
+      if (currentImageIndex < galleryImages.length - 1) {
+        currentImageIndex++
+        updateGalleryImage()
+      }
+      break
+  }
+}
+
+// Close modals when clicking outside
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal-overlay")) {
+    if (e.target.id === "rateDetailsOverlay") {
+      closeRateDetailsModal()
+    } else if (e.target.id === "roomDetailsOverlay") {
+      closeRoomDetailsModal()
+    } else if (e.target.id === "imageGalleryOverlay") {
+      closeImageGallery()
+    }
+  }
+})
+
+// Update existing functions to use new modals
+function openImageModal(imageSrc) {
+  // Find the index of the clicked image
+  const imageIndex = galleryImages.findIndex((img) => img === imageSrc)
+  openImageGallery(imageIndex >= 0 ? imageIndex : 0)
+}
+
+// Initialize modal functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Update existing rate details links
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("rate-details-link")) {
+      e.preventDefault()
+      const rateOption = e.target.closest(".rate-option") || e.target.closest(".pricing-section")
+      const rateTitle = rateOption
+        ? rateOption.querySelector(".rate-title")?.textContent || "Rate Details"
+        : "Rate Details"
+      openRateDetailsModal(rateTitle)
+    }
+
+    if (e.target.classList.contains("room-details-link")) {
+      e.preventDefault()
+      openRoomDetailsModal()
+    }
+  })
+})
+
+
 
 
 //Event Listerner for calendar

@@ -254,7 +254,7 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="room-details-link">Room details</a>
+                    <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
                 </div>
             </div>
             
@@ -281,7 +281,7 @@
                                 <li>This rate includes room charges and WiFi for 2 devices</li>
                                 <li>Applicable Taxes Extra</li>
                             </ul>
-                            <a href="#" class="rate-details-link">Rate details</a>
+                            <a href="#" class="rate-details-link" onclick="openRateDetailsModal('Best Available Rate Room Only'); return false;">Rate details</a>
                         </div>
                         
                         <div class="col-md-6">
@@ -635,5 +635,157 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Add these modal structures to your HTML file, preferably before the closing </body> tag -->
+
+<!-- Rate Details Modal Overlay -->
+<div class="modal-overlay" id="rateDetailsOverlay" style="display: none;">
+    <div class="modal-container rate-details-modal">
+        <div class="modal-header">
+            <h3 class="modal-title" id="rateModalTitle">Best Available Rate Room Only</h3>
+            <button class="modal-close-btn" onclick="closeRateDetailsModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-content">
+            <div class="rate-section">
+                <h4>Rate Description</h4>
+                <ul class="rate-list">
+                    <li>This rate includes room charges and WiFi for 2devices</li>
+                    <li>Applicable Taxes Extra</li>
+                </ul>
+            </div>
+            
+            <div class="rate-section">
+                <h4>Cancellation Policy</h4>
+                <p>Free cancellation by 2PM - 1 day prior to arrival to avoid a penalty of 1 night charge plus any applicable taxes & fees.</p>
+            </div>
+            
+            <div class="rate-section">
+                <h4>Guarantee Policy</h4>
+                <p>Reservations must be guaranteed by Credit Card and a tokenization will be done via the payment gateway</p>
+            </div>
+            
+            <div class="rate-pricing-bottom">
+                <div class="pricing-options">
+                    <div class="price-option members">
+                        <div class="rate-type">Members Rate</div>
+                        <div class="rate-price">₹3,959</div>
+                        <button class="btn btn-warning rate-btn">Login/Join</button>
+                    </div>
+                    <div class="price-option standard">
+                        <div class="rate-type">Standard Rate</div>
+                        <div class="rate-price">₹4,499</div>
+                        <button class="btn btn-outline-dark rate-btn">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Room Details Modal Overlay -->
+<div class="modal-overlay" id="roomDetailsOverlay" style="display: none;">
+    <div class="modal-container room-details-modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Room Details - Super Deluxe Room</h3>
+            <button class="modal-close-btn" onclick="closeRoomDetailsModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-content">
+            <div class="room-details-section">
+                <h4>Room Features</h4>
+                <div class="room-features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-bed"></i>
+                        <span>Queen Size Bed</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>2 Adults Maximum</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-expand"></i>
+                        <span>18 Sq.mt Area</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-eye"></i>
+                        <span>City View</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="room-details-section">
+                <h4>Amenities & Services</h4>
+                <div class="amenities-detailed">
+                    <div class="amenity-category">
+                        <h5>Bathroom</h5>
+                        <ul>
+                            <li>Hair Dryer</li>
+                            <li>Rain Shower</li>
+                            <li>Premium Toiletries</li>
+                        </ul>
+                    </div>
+                    <div class="amenity-category">
+                        <h5>Technology</h5>
+                        <ul>
+                            <li>Wi-Fi Inclusive</li>
+                            <li>LED TV with Satellite Channels</li>
+                            <li>Electronic Safe</li>
+                        </ul>
+                    </div>
+                    <div class="amenity-category">
+                        <h5>Comfort</h5>
+                        <ul>
+                            <li>Air Conditioner</li>
+                            <li>Tea & Coffee Maker</li>
+                            <li>Ironing Board (on request)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Gallery Modal Overlay -->
+<div class="modal-overlay" id="imageGalleryOverlay" style="display: none;">
+    <div class="modal-container image-gallery-modal">
+        <div class="modal-header">
+            <button class="modal-close-btn" onclick="closeImageGallery()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-content">
+            <div class="gallery-main-image">
+                <img id="galleryCurrentImage" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" alt="Hotel Room">
+            </div>
+            
+            <div class="gallery-thumbnails">
+                <div class="thumbnail-item active" onclick="changeGalleryImage(this, 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww')">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" alt="Room View 1">
+                </div>
+                <div class="thumbnail-item" onclick="changeGalleryImage(this, 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?fm=jpg&q=60&w=3000')">
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?fm=jpg&q=60&w=3000" alt="Room View 2">
+                </div>
+                <div class="thumbnail-item" onclick="changeGalleryImage(this, 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?fm=jpg&q=60&w=3000')">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?fm=jpg&q=60&w=3000" alt="Room View 3">
+                </div>
+                <div class="thumbnail-item" onclick="changeGalleryImage(this, 'https://images.unsplash.com/photo-1590490360182-c33d57733427?fm=jpg&q=60&w=3000')">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?fm=jpg&q=60&w=3000" alt="Room View 4">
+                </div>
+            </div>
+            
+            <div class="gallery-counter">
+                <span id="imageCounter">1 / 4</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
