@@ -11,13 +11,13 @@ body {
 }
 
 /* Ginger Logo Styles */
-.ginger-logo {
+.logo {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.ginger-text {
+.logo-text {
   font-size: 24px;
   font-weight: bold;
   color: #ff6b35;
@@ -33,44 +33,6 @@ body {
 /* Booking Controls Container */
 .booking-controls {
   gap: 0;
-}
-
-/* Search Input Styles */
-.search-input-container {
-  position: relative;
-  border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
-  background: white;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  height: 44px;
-  min-width: 250px;
-}
-
-.search-icon {
-  color: #666;
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.search-input {
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px;
-  color: #333;
-  flex: 1;
-}
-
-.search-input:focus {
-  box-shadow: none;
-}
-
-.clear-icon {
-  color: #999;
-  cursor: pointer;
-  font-size: 12px;
 }
 
 /* Date Selector Styles */
@@ -123,31 +85,6 @@ body {
   white-space: nowrap;
 }
 
-/* Special Code Dropdown Styles */
-.special-code-dropdown {
-  border: 1px solid #ddd;
-  border-left: none;
-  background: white;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  height: 44px;
-  cursor: pointer;
-  min-width: 130px;
-  position: relative;
-}
-
-.special-code-text {
-  font-size: 14px;
-  color: #333;
-  margin-right: 8px;
-}
-
-.dropdown-arrow {
-  color: #666;
-  font-size: 12px;
-}
-
 /* Search Button Styles */
 .search-btn {
   background: linear-gradient(135deg, #ff6b35, #f7931e);
@@ -164,18 +101,6 @@ body {
 .search-btn:hover {
   background: linear-gradient(135deg, #e55a2b, #e8841a);
   color: white;
-}
-
-/* Login Link Styles */
-.login-link {
-  margin-left: 24px;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-}
-
-.login-link:hover {
-  color: #ff6b35;
 }
 
 /* Date Picker Modal Styles */
@@ -424,41 +349,6 @@ body {
   text-align: center;
 }
 
-/* Special Dropdown Menu */
-.special-dropdown-menu {
-  position: fixed;
-  top: 70px;
-  right: 120px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  min-width: 200px;
-}
-
-.dropdown-item {
-  padding: 12px 16px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: #333;
-}
-
-.dropdown-item:hover {
-  background: #f8f9fa;
-}
-
-.dropdown-item.active {
-  background: #f0f8ff;
-  color: #ff6b35;
-}
-
-.dropdown-item .fas {
-  color: #ff6b35;
-}
 
 /* Enhanced Hero Section */
 .hero-section {
@@ -499,28 +389,6 @@ body {
   z-index: 2;
 }
 
-.decorative-dots {
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 2;
-}
-
-.dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin: 0 5px;
-}
-
-.dot.orange {
-  background: #ff8c00;
-}
-
-.dot.red {
-  background: #dc3545;
-}
 
 .progress-steps {
   display: flex;

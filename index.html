@@ -12,55 +12,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container-fluid px-4">
-            <!-- Ginger Logo -->
+    <!-- Navigation Bar --> 
+     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid px-4"> 
             <div class="navbar-brand">
-                <div class="ginger-logo">
-                    <span class="ginger-text">LOGO</span>
-                    <span class="brand-subtitle">Tag Line</span>
+                <div class="logo">
+                    <span class="logo-text">GINGER</span>
+                    <span class="brand-subtitle">An IHCL Brand</span>
                 </div>
             </div>
+             <!-- Search and Booking Controls  -->
+             <div class="booking-controls d-flex align-items-center justify-content-end flex-grow-1"> 
+                <div class="booking-container d-flex align-items-center bg-light rounded-pill px-3 py-2 shadow-sm">
 
-            <!-- Search and Booking Controls -->
-            <div class="booking-controls d-flex align-items-center">
-                <!-- Location Search -->
-                <div class="search-input-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="search" class="form-control search-input" placeholder="Enter hotel name">
-                    <!-- <i class="fas fa-times clear-icon" onclick="clearSearch()"></i> -->
-                </div>
-
-                <!-- Date Selector -->
-                <div class="date-selector" id="dateSelector">
+                 <!-- Date Selector  -->
+                <div class="date-selector px-3 py-2 border-end" id="dateSelector">
                     <i class="fas fa-calendar-alt date-icon"></i>
                     <span class="date-text" id="dateText">17 Jun – 18 Jun</span>
                 </div>
 
-                <!-- Guest & Room Selector -->
-                <div class="guest-selector" id="guestSelector">
+                 <!-- Guest & Room Selector  -->
+                <div class="guest-selector px-3 py-2" id="guestSelector">
                     <i class="fas fa-user guest-icon"></i>
                     <span class="guest-text" id="guestText">1 Guest, 1 Room</span>
                 </div>
-
-                <!-- Special Code Dropdown -->
-                <div class="special-code-dropdown" id="specialCodeDropdown">
-                    <span class="special-code-text" id="specialCodeText">Special Code</span>
-                    <i class="fas fa-chevron-down dropdown-arrow"></i>
-                </div>
-
-                <!-- Search Button -->
-                <button class="btn search-btn">Search</button>
-
-                <!-- Login/Join -->
-                <div class="login-link">
-                    <span>Login / Join</span>
-                </div>
+                <!-- Search Button  -->
+                <button class="btn btn-primary search-btn ms-2 px-4 py-2 rounded-pill fw-medium">Search</button>
             </div>
+             </div>
         </div>
     </nav>
 
+
+    
     <!-- Date Picker Modal -->
     <div class="date-picker-modal" id="datePickerModal" style="display: none;">
         <div class="date-picker-content">
@@ -71,7 +55,6 @@
                         <button class="month-nav-btn" id="prevMonth">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <!-- <h4>June 2025</h4> -->
                          <h4 id="leftMonthHeader"></h4>
                     </div>
                     <div class="calendar-grid" id="leftCalendar">
@@ -82,7 +65,6 @@
                 <!-- Right Calendar -->
                 <div class="calendar-month">
                     <div class="month-header">
-                        <!-- <h4>July 2025</h4> -->
                          <h4 id="rightMonthHeader"></h4>
                         <button class="month-nav-btn" id="nextMonth">
                             <i class="fas fa-chevron-right"></i>
@@ -108,21 +90,6 @@
         </div>
     </div>
 
-    <!-- Special Code Dropdown Menu -->
-    <div class="special-dropdown-menu" id="specialDropdownMenu" style="display: none;">
-        <div class="dropdown-item active" data-value="none">
-            <span>None</span>
-        </div>
-        <div class="dropdown-item" data-value="corporate">
-            <span>Corporate Access Code</span>
-        </div>
-        <div class="dropdown-item" data-value="travel">
-            <span>Travel Agency Code</span>
-        </div>
-        <div class="dropdown-item" data-value="business">
-            <span>Business Connect Code</span>
-        </div>
-    </div>
 
     <!-- Main Content -->
     <div class="container-fluid">
@@ -145,10 +112,7 @@
                     </div>
                 </div>
                 
-                <!-- Room Rates Button -->
-                <button class="btn hero-room-rates-btn">
-                    <i class="fas fa-bed me-2"></i>Room Rates
-                </button>
+                
             </div>
         </div>
 
@@ -176,12 +140,7 @@
                         
     <!--Room card-->
     <div class="room-card white-card rounded-card">
-    <!-- Room Title Header -->
-    <!-- <div class="room-header">
-        <h5 class="room-title">Super Deluxe Room</h5>
-        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
-    </div> -->
-    
+      
     <div class="row">
         <div class="col-md-5">
             <!-- Multiple Images Gallery -->
@@ -222,13 +181,13 @@
             
             <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
         </div>
-        
-        <div class="col-md-7">
+           <div class="col-md-7">
+             <!-- Room Title Header -->   
+            <div class="room-title-section">
+                <h5 class="room-title">Super Deluxe Room</h5>
+                <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
+            </div>
             <!-- Single Price with Accommodation Dropdown -->
-             <div class="room-title-section">
-        <h5 class="room-title">Super Deluxe Room</h5>
-        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
-    </div>
             <div class="pricing-section">
                 <h6 class="rate-title">Room Category</h6>
                
@@ -274,134 +233,8 @@
     </div>
 </div>
 
-    <div class="room-card white-card rounded-card">
     
-    
-    <div class="row">
-        <div class="col-md-5">
-            <!-- Multiple Images Gallery -->
-            <div class="room-images-gallery">
-                <div class="main-room-image-container">
-                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww" 
-                        alt="Super Deluxe Room" 
-                        class="room-image main-image" 
-                        onclick="openImageGallery(0)">
-                    <div class="image-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                
-                <!-- Image Thumbnails -->
-                <div class="image-thumbnails-row">
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?fm=jpg&q=60&w=3000" 
-                             alt="Room View 2" class="room-thumbnail" onclick="changeMainImage(this.src)">
-                    </div>
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?fm=jpg&q=60&w=3000" 
-                             alt="Room View 3" class="room-thumbnail" onclick="changeMainImage(this.src)">
-                    </div>
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?fm=jpg&q=60&w=3000" 
-                             alt="Room View 4" class="room-thumbnail" onclick="changeMainImage(this.src)">
-                    </div>
-                    <div class="thumbnail-container view-all" onclick="openImageGallery(0)">
-                        <div class="view-all-overlay">
-                            <i class="fas fa-images"></i>
-                            <span>+3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Facilities Icons -->
-            <div class="room-facilities">
-                 <div class="facility-item">
-                    <i class="fas fa-wind"></i>
-                    <span>Hair Dryer</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-shower"></i>
-                    <span>Rain Shower</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-wifi"></i>
-                    <span>Wi-Fi Inclusive</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-snowflake"></i>
-                    <span>Air Conditioner</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-lock"></i>
-                    <span>Electronic Safe</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-tv"></i>
-                    <span>LED TV</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-tshirt"></i>
-                    <span>Ironing Board</span>
-                </div>
-                <div class="facility-item">
-                    <i class="fas fa-coffee"></i>
-                    <span>Tea & Coffee Maker</span>
-                </div>
-            </div>
-            
-            <a href="#" class="room-details-link" onclick="openRoomDetailsModal(); return false;">Room details</a>
-        </div>
-        
-        <div class="col-md-7">
-            <!-- Single Price with Accommodation Dropdown -->
-             <div class="room-title-section">
-        <h5 class="room-title">Super Deluxe Room</h5>
-        <p class="room-description">Spacious Executive Deluxe Rooms with balcony offer refined contemporary accommodation.</p>
-    </div>
-            <div class="pricing-section">
-                
-                <h6 class="rate-title">Room Category</h6>
-               
-                <div class="accommodation-dropdown">
-                    <select class="form-select accommodation-select" id="accommodationSelect" onchange="updatePrice(this.value)">
-                        <option value="room-only" data-price="3500">Room Only</option>
-                        <option value="room-breakfast" data-price="4200">Room With Breakfast</option>
-                        <option value="room-all-meals" data-price="7800" selected>Room With All MJ Meal</option>
-                        <option value="room-bf-meal" data-price="5500">Room With B/F & 1 MJ Meal</option>
-                    </select>
-                </div>
-                
-                <ul class="rate-features">
-                    <li>This rate includes room charges and WiFi for 2 devices</li>
-                    <li>Applicable Taxes Extra</li>
-                </ul>
-                
-                <a href="#" class="rate-details-link" onclick="openRateDetailsModal('Best Available Rate Room Only'); return false;">Rate details</a>
-                
-                <!-- Pricing Display -->
-                <div class="pricing-display">
-                    <div class="price-container">
-                        <div class="current-price">
-                            <span class="price-amount" id="priceAmount">₹7,800</span>
-                            <span class="price-period">/ Night</span>
-                        </div>
-                        <div class="price-date" id="priceDate">23/07/2025</div>
-                    </div>
-                    <button class="btn btn-primary book-now-btn" onclick="handleBooking()">
-                        BOOK NOW
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Availability Alert moved to bottom with full width -->
-    <div class="availability-alert">
-        <i class="fas fa-exclamation-triangle text-danger"></i>
-        <span class="text-danger">Last 5 Rooms Available</span>
-    </div>
-</div>
+     
 
                         <!-- View More Rates Button -->
                         <div class="text-center mt-4">
@@ -454,7 +287,7 @@
         </div>
     </div>
 
-    <!-- Rate Details Modal -->
+    <!-- Rate Details Modal -Just a Static Model to Diplay extra information-->
     <div class="modal fade" id="rateDetailsModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content rate-details-content">
@@ -734,7 +567,7 @@
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
 
-    <!-- Add these modal structures to your HTML file, preferably before the closing </body> tag -->
+    
 
 <!-- Rate Details Modal Overlay -->
 <div class="modal-overlay" id="rateDetailsOverlay" style="display: none;">

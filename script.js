@@ -2,15 +2,16 @@
 
 class GingerBooking {
   constructor() {
-    this.selectedDates = {
-      checkin: new Date(2025, 5, 17), // June 17, 2025
-      checkout: new Date(2025, 5, 18), // June 18, 2025
-    }
     const today = new Date()
+    this.selectedDates = {
+      checkin: new Date(today),
+  checkout: new Date(today.getTime() + 24 * 60 * 60 * 1000), // June 18, 2025
+    }
+    this.selectionPhase = "checkin";
     this.currentYear = today.getFullYear()
     this.currentMonth = today.getMonth()
     this.rooms = [{ adults: 1, children: 0 }]
-    this.specialCode = "none"
+
 
     this.init()
   }
@@ -20,10 +21,9 @@ class GingerBooking {
     this.generateCalendars()
     this.updateGuestDisplay()
     this.updateDateDisplay()
-    this.initializeRoomSelection()
-    this.initializePriceCalculation()
-    this.initializeImageModal()
+    
     this.initializeCheckboxes()
+   
   }
 
   setupEventListeners() {
@@ -37,11 +37,6 @@ class GingerBooking {
       this.toggleGuestModal()
     })
 
-    // Special code dropdown click
-    document.getElementById("specialCodeDropdown").addEventListener("click", () => {
-      this.toggleSpecialDropdown()
-    })
-
     // Close modals when clicking outside
     document.addEventListener("click", (e) => {
       if (!e.target.closest(".date-picker-modal") && !e.target.closest("#dateSelector")) {
@@ -50,20 +45,12 @@ class GingerBooking {
       if (!e.target.closest(".guest-modal") && !e.target.closest("#guestSelector")) {
         this.closeGuestModal()
       }
-      if (!e.target.closest(".special-dropdown-menu") && !e.target.closest("#specialCodeDropdown")) {
-        this.closeSpecialDropdown()
-      }
     })
 
-    // Special dropdown items
-    document.querySelectorAll(".dropdown-item").forEach((item) => {
-      item.addEventListener("click", (e) => {
-        this.selectSpecialCode(e.target.closest(".dropdown-item").dataset.value)
-      })
-    })
+    
   }
 
-  // Header functionality
+  //Header Functionality
   toggleDatePicker() {
     const modal = document.getElementById("datePickerModal")
     modal.style.display = modal.style.display === "none" ? "block" : "none"
@@ -87,97 +74,6 @@ class GingerBooking {
     document.getElementById("guestModal").style.display = "none"
   }
 
-  toggleSpecialDropdown() {
-    const menu = document.getElementById("specialDropdownMenu")
-    menu.style.display = menu.style.display === "none" ? "block" : "none"
-  }
-
-  closeSpecialDropdown() {
-    document.getElementById("specialDropdownMenu").style.display = "none"
-  }
-
-  selectSpecialCode(value) {
-    this.specialCode = value
-
-    // Update active state
-    document.querySelectorAll(".dropdown-item").forEach((item) => {
-      item.classList.remove("active")
-    })
-
-    document.querySelector(`[data-value="${value}"]`).classList.add("active")
-
-    // Update display text
-    const text =
-      value === "none"
-        ? "Special Code"
-        : value === "corporate"
-          ? "Corporate Access Code"
-          : value === "travel"
-            ? "Travel Agency Code"
-            : "Business Connect Code"
-
-    document.getElementById("specialCodeText").textContent = text
-    this.closeSpecialDropdown()
-  }
-
-  generateCalendars() {
-    this.generateCalendar("juneCalendar", 2025, 5) // June 2025
-    this.generateCalendar("julyCalendar", 2025, 6) // July 2025
-  }
-
-  // generateCalendar(containerId, year, month) {
-  //   const container = document.getElementById(containerId)
-  //   const firstDay = new Date(year, month, 1)
-  //   const lastDay = new Date(year, month + 1, 0)
-  //   const daysInMonth = lastDay.getDate()
-  //   const startingDayOfWeek = firstDay.getDay()
-
-  //   // Clear container
-  //   container.innerHTML = ""
-
-  //   // Add day headers
-  //   const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  //   dayHeaders.forEach((day) => {
-  //     const header = document.createElement("div")
-  //     header.className = "calendar-day-header"
-  //     header.textContent = day
-  //     container.appendChild(header)
-  //   })
-
-  //   // Add empty cells for days before month starts
-  //   for (let i = 0; i < startingDayOfWeek; i++) {
-  //     const emptyDay = document.createElement("div")
-  //     emptyDay.className = "calendar-day disabled"
-  //     container.appendChild(emptyDay)
-  //   }
-
-  //   // Add days of the month
-  //   for (let day = 1; day <= daysInMonth; day++) {
-  //     const dayElement = document.createElement("div")
-  //     dayElement.className = "calendar-day"
-
-  //     const currentDate = new Date(year, month, day)
-  //     const isSelected = this.isDateSelected(currentDate)
-  //     const isInRange = this.isDateInRange(currentDate)
-
-  //     if (isSelected) {
-  //       dayElement.classList.add("selected")
-  //     } else if (isInRange) {
-  //       dayElement.classList.add("in-range")
-  //     }
-
-  //     dayElement.innerHTML = `
-  //               <span>${day}</span>
-  //               <span class="price">₹4.4K</span>
-  //           `
-
-  //     dayElement.addEventListener("click", () => {
-  //       this.selectDate(currentDate)
-  //     })
-
-  //     container.appendChild(dayElement)
-  //   }
-  // }
 
   generateCalendar(containerId, year, month) {
   const container = document.getElementById(containerId)
@@ -236,10 +132,13 @@ initializeCalendar() {
   const today = new Date()
   this.currentYear = today.getFullYear()
   this.currentMonth = today.getMonth()
-  this.selectedDates = {
-    checkin: new Date(today),
-    checkout: new Date(today.getTime() + 24 * 60 * 60 * 1000)
-  }
+  const checkin = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+const checkout = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)
+
+this.selectedDates = {
+  checkin,
+  checkout
+}
 
   this.generateCalendars()
 
@@ -289,15 +188,22 @@ getMonthName(monthIndex) {
 
 
   isDateSelected(date) {
-    return (
-      date.getTime() === this.selectedDates.checkin.getTime() ||
-      date.getTime() === this.selectedDates.checkout.getTime()
-    )
-  }
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const checkin = new Date(this.selectedDates.checkin.getFullYear(), this.selectedDates.checkin.getMonth(), this.selectedDates.checkin.getDate())
+  const checkout = new Date(this.selectedDates.checkout.getFullYear(), this.selectedDates.checkout.getMonth(), this.selectedDates.checkout.getDate())
+
+  return d.getTime() === checkin.getTime() || d.getTime() === checkout.getTime()
+}
+
 
   isDateInRange(date) {
-    return date > this.selectedDates.checkin && date < this.selectedDates.checkout
-  }
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const checkin = new Date(this.selectedDates.checkin.getFullYear(), this.selectedDates.checkin.getMonth(), this.selectedDates.checkin.getDate())
+  const checkout = new Date(this.selectedDates.checkout.getFullYear(), this.selectedDates.checkout.getMonth(), this.selectedDates.checkout.getDate())
+
+  return d > checkin && d < checkout
+}
+
 
   selectDate(date) {
     // Simple date selection logic
@@ -312,9 +218,15 @@ getMonthName(monthIndex) {
     this.generateCalendars()
   }
 
+
+
+
   updateDateDisplay() {
     const checkinStr = this.formatDate(this.selectedDates.checkin)
-    const checkoutStr = this.formatDate(this.selectedDates.checkout)
+    const checkoutStr = this.selectedDates.checkout
+  ? this.formatDate(this.selectedDates.checkout)
+  : "Select date"
+
     document.getElementById("dateText").textContent = `${checkinStr} – ${checkoutStr}`
   }
 
@@ -426,42 +338,7 @@ handleNextMonth() {
     document.getElementById("guestText").textContent = guestText
   }
 
-  // Room Selection Functionality
-  initializeRoomSelection() {
-    const selectButtons = document.querySelectorAll(".select-btn")
-    const loginButtons = document.querySelectorAll(".login-btn")
-
-    selectButtons.forEach((button) => {
-      button.addEventListener("click", function (e) {
-        e.preventDefault()
-        handleRoomSelection(this)
-      })
-    })
-
-    loginButtons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        e.preventDefault()
-        handleLogin()
-      })
-    })
-  }
-
-  // Price Calculation
-  initializePriceCalculation() {
-    const taxCheckbox = document.getElementById("showTaxes")
-
-    if (taxCheckbox) {
-      taxCheckbox.addEventListener("change", function () {
-        updatePriceDisplay(this.checked)
-      })
-    }
-  }
-
-  // Image Modal
-  initializeImageModal() {
-    // Modal will be handled by the openImageModal function called from HTML
-  }
-
+  
   // Checkbox functionality
   initializeCheckboxes() {
     const showTaxesCheckbox = document.getElementById("showTaxes")
@@ -479,108 +356,6 @@ handleNextMonth() {
       })
     }
   }
-}
-
-// Room Selection Functions
-function handleRoomSelection(button) {
-  // Get price from the same rate option
-  const rateOption = button.closest(".rate-option")
-  const priceElement = rateOption.querySelector(".price")
-  const price = priceElement.textContent.replace("₹", "").replace(",", "")
-
-  // Get room title
-  const roomCard = button.closest(".room-card")
-  const roomTitle = roomCard.querySelector(".room-title").textContent
-
-  // Update sidebar
-  updateSidebar(roomTitle, price)
-
-  // Visual feedback
-  button.textContent = "Selected"
-  button.classList.remove("btn-outline-dark")
-  button.classList.add("btn-success")
-  button.disabled = true
-
-  // Reset other select buttons in the same room
-  const otherButtons = roomCard.querySelectorAll(".select-btn")
-  otherButtons.forEach((btn) => {
-    if (btn !== button) {
-      btn.textContent = "Select"
-      btn.classList.remove("btn-success")
-      btn.classList.add("btn-outline-dark")
-      btn.disabled = false
-    }
-  })
-
-  // Show success message
-  showNotification("Room selected successfully!", "success")
-}
-
-function handleLogin() {
-  showNotification("Please login to access member rates", "info")
-}
-
-function updateSidebar(roomTitle, price) {
-  const notSelectedElement = document.querySelector(".not-selected")
-  const priceElements = document.querySelectorAll(".price-value")
-  const totalElement = document.querySelector(".total-value")
-
-  if (notSelectedElement) {
-    notSelectedElement.textContent = roomTitle
-    notSelectedElement.classList.remove("not-selected")
-    notSelectedElement.style.color = "#333"
-    notSelectedElement.style.fontWeight = "500"
-  }
-
-  // Update price
-  const basePrice = Number.parseFloat(price)
-  const taxes = basePrice * 0.18 // 18% tax
-  const total = basePrice + taxes
-
-  if (priceElements.length >= 2) {
-    priceElements[0].textContent = `₹ ${basePrice.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
-    priceElements[1].textContent = `₹ ${taxes.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
-  }
-
-  if (totalElement) {
-    totalElement.textContent = `₹ ${total.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`
-  }
-}
-
-function updatePriceDisplay(showTaxes) {
-  const priceElements = document.querySelectorAll(".price")
-
-  priceElements.forEach((priceElement) => {
-    const basePrice = Number.parseFloat(priceElement.textContent.replace("₹", "").replace(",", ""))
-
-    if (showTaxes) {
-      const withTaxes = basePrice * 1.18 // Add 18% tax
-      priceElement.textContent = `₹${withTaxes.toLocaleString("en-IN")}`
-      priceElement.style.color = "#dc3545"
-    } else {
-      priceElement.textContent = `₹${basePrice.toLocaleString("en-IN")}`
-      priceElement.style.color = "#333"
-    }
-  })
-}
-
-// Image Modal Function
-function openImageModal(imageSrc) {
-  const modal = document.getElementById("imageModal")
-  const modalImage = document.getElementById("modalImage")
-  const imageCounter = document.getElementById("imageCounter")
-
-  modalImage.src = imageSrc
-  imageCounter.textContent = "1 / 1"
-
-  modal.style.display = "block"
-
-  // Add keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      modal.style.display = "none"
-    }
-  })
 }
 
 // Rate Details Modal Function
@@ -615,30 +390,8 @@ function changeGalleryImage(imageSrc) {
   event.target.classList.add("active")
 }
 
-// Utility Functions
-function showNotification(message, type = "info") {
-  // Create notification element
-  const notification = document.createElement("div")
-  notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`
-  notification.style.cssText = "top: 20px; right: 20px; z-index: 9999; min-width: 300px;"
-  notification.innerHTML = `
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `
 
-  document.body.appendChild(notification)
 
-  // Auto remove after 3 seconds
-  setTimeout(() => {
-    if (notification.parentNode) {
-      notification.remove()
-    }
-  }, 3000)
-}
-
-function clearSearch() {
-  document.querySelector(".search-input").value = ""
-}
 
 // Footer functionality
 function subscribeNewsletter() {
@@ -692,7 +445,7 @@ function scrollToTop() {
 document.addEventListener("DOMContentLoaded", () => {
   window.booking = new GingerBooking()
   //Event Listner for Calendar
-
+  
   document.getElementById("prevMonth").addEventListener("click", () => {
   window.booking.handlePrevMonth()
 })
@@ -769,7 +522,7 @@ window.addEventListener("scroll", () => {
   }
 })
 
-// Add these functions to your existing JavaScript file
+
 
 // Price data for different accommodation types
 const accommodationPrices = {
@@ -782,13 +535,12 @@ const accommodationPrices = {
 // Function to show notifications
 function showNotification(message, type) {
   console.log(`Notification (${type}): ${message}`)
-  // Implement actual notification logic here
 }
+  
 
 // Function to update sidebar
 function updateSidebar(roomName, price) {
   console.log(`Sidebar updated with room: ${roomName} and price: ₹${price}`)
-  // Implement actual sidebar update logic here
 }
 
 // Update price based on accommodation selection
@@ -862,7 +614,6 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-// Add these functions to your existing JavaScript file
 
 // Global variables for image gallery
 let currentImageIndex = 0
@@ -1039,4 +790,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-//Event Listerner for calendar
+
